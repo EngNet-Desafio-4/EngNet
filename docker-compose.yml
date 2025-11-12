@@ -61,7 +61,7 @@ services:
     depends_on:
       - server
     volumes:
-      - ./server:/usr/src/app/
+      - ./client:/usr/src/app/
       - /usr/src/app/node_modules
     networks:
       - engnet_network
