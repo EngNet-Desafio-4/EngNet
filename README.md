@@ -103,13 +103,21 @@ make clean
 
 ---
 
-## Branch dev
+## Branches do Projeto
 
-A branch dev é destinada ao ambiente de desenvolvimento e deploy automático.
-Após concluir uma tarefa, crie um Pull Request (PR) direcionado para a branch dev.
+### **Branch `dev`**
 
-Ao ser atualizada, essa branch executará automaticamente a pipeline de integração contínua (CI), responsável por:
+A branch `dev` é destinada ao **desenvolvimento**.  
+Todas as alterações devem ser feitas a partir dela.
 
-* Validar o build da aplicação;
+---
 
-* Executar o lint/formatter para garantir o padrão de código.
+### **Branch `prod`**
+
+A branch `prod` é destinada ao **ambiente de produção**.  
+Após validar e concluir as alterações em `dev`, crie um **Pull Request (PR)** para `prod`.
+
+Quando atualizada, a `prod` executa automaticamente o **deploy** da aplicação.
+
+Ao ser atualizada, a `prod` executa automaticamente a **pipeline de integração contínua (CI)**, que:
+- Valida o build da aplicação;
