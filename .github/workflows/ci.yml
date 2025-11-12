@@ -1,64 +1,33 @@
-name: CI - Build and Lint
+name: CI - Build
 
 on:
   push:
-    branches: [ dev ]
+    branches: [prod]
   pull_request:
-    branches: [ dev ]
+    branches: [prod]
 
 jobs:
-  build:
+  build-and-lint:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: engnet
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=5s
-          --health-timeout=5s
-          --health-retries=5
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build backend container
+      - name: Build and run containers (detached)
         run: |
-          docker compose build backend
+          docker compose -f docker-compose.yml up --build -d
+          docker compose ps
 
-      - name: Build client container
+      - name: Wait for containers to be healthy
         run: |
-          docker compose build client
+          echo "Aguardando containers ficarem prontos..."
+          sleep 15
+          docker compose ps
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install backend dependencies
-        working-directory: ./server
-        run: npm ci
-
-      - name: Run lint
-        working-directory: ./server
-        run: npm run lint
+      - name: Shut down containers
+        if: always()
+        run: docker compose down

@@ -100,3 +100,24 @@ make down
 ```bash
 make clean
 ```
+
+---
+
+## Branches do Projeto
+
+### **Branch `dev`**
+
+A branch `dev` é destinada ao **desenvolvimento**.  
+Todas as alterações devem ser feitas a partir dela.
+
+---
+
+### **Branch `prod`**
+
+A branch `prod` é destinada ao **ambiente de produção**.  
+Após validar e concluir as alterações em `dev`, crie um **Pull Request (PR)** para `prod`.
+
+Quando atualizada, a `prod` executa automaticamente o **deploy** da aplicação.
+
+Ao ser atualizada, a `prod` executa automaticamente a **pipeline de integração contínua (CI)**, que:
+- Valida o build da aplicação;
