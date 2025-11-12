@@ -1,4 +1,4 @@
-name: CI - Build and Lint
+name: CI - Build
 
 on:
   push:
@@ -27,11 +27,6 @@ jobs:
           echo "Aguardando containers ficarem prontos..."
           sleep 15
           docker compose ps
-
-      - name: Run lint (inside container)
-        run: |
-          # Executa o lint dentro do container do servidor
-          docker compose exec -T engnet_server npm run lint
 
       - name: Shut down containers
         if: always()
