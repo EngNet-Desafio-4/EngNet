@@ -43,7 +43,9 @@ services:
     expose:
       - "${SERVER_PORT}"
     volumes:
-      - ./server:/usr/src/app/
+      - ./server:/usr/src/app
+      - ./server/dist:/usr/src/app/dist
+      - ./server/package.json:/usr/src/app/package.json
       - /usr/src/app/node_modules
     networks:
       - engnet_network
