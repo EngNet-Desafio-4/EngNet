@@ -6,6 +6,7 @@ build:
 	docker compose -f $(COMPOSE_FILE) up
 
 up:
+	docker compose -f $(COMPOSE_FILE) down
 	docker compose -f $(COMPOSE_FILE) up
 
 down:
