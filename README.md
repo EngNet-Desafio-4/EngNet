@@ -1,6 +1,6 @@
-# engnet-api
+# EngNet
 
-Documentação rápida para *buildar*, executar e desenvolver localmente a API **engnet-api** (NestJS + TypeORM + PostgreSQL) usando Docker.
+Documentação rápida para *buildar*, executar e desenvolver localmente a **EngNet** usando Docker.
 
 ---
 
@@ -29,6 +29,7 @@ DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
 DB_NAME=engnet
+...
 ```
 
 **Observação:** dentro do ambiente Docker o `DB_HOST` deve ser o **nome do serviço** `postgres` (não `localhost`).
@@ -60,12 +61,23 @@ DB_NAME=engnet
 
     * **O que faz:** Para os containers e remove volumes, imagens e containers órfãos (`down -v --rmi all --remove-orphans`).
     * **Quando usar:** quando quiser limpar tudo e começar do zero. **Cuidado:** remove dados persistidos no volume do Postgres se for um volume gerenciado pelo Compose.
+
+* `make ssl`
+
+    * **O que faz:** Gera o certificado SSL para conseguir utiizar o serviço na porta HTTPS.
+    * **Quando usar:** É obrigatória a utilização disso, caso não exista dentro da pasta nginx deve executa-lo.
+
 ---
 
 ## Como rodar com Docker (passo-a-passo)
 
-1. Verifique `.env` configurado (veja o exemplo acima).
-2. Construir imagens (opcional):
+1. Gerar o SSL para o https:
+
+```bash
+make ssl
+```
+
+2. Construir imagens:
 
 ```bash
 make build
