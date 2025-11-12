@@ -100,3 +100,16 @@ make down
 ```bash
 make clean
 ```
+
+---
+
+## Branch dev
+
+A branch dev é destinada ao ambiente de desenvolvimento e deploy automático.
+Após concluir uma tarefa, crie um Pull Request (PR) direcionado para a branch dev.
+
+Ao ser atualizada, essa branch executará automaticamente a pipeline de integração contínua (CI), responsável por:
+
+* Validar o build da aplicação;
+
+* Executar o lint/formatter para garantir o padrão de código.
