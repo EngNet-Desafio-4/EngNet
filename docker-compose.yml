@@ -8,8 +8,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - ./postgresql_storage:/var/lib/postgresql/data
       - ./postgresql/:/docker-entrypoint-initdb.d
+      - ./postgresql_storage:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
