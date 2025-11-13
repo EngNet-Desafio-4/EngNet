@@ -1,12 +1,12 @@
 import { Controller, Get, Param, HttpCode, HttpStatus } from '@nestjs/common';
-import { ReportsService } from '../application/reports/reports.service';
+import { ReportService } from '../application/report/report.service';
 
-@Controller('reports')
-export class ReportsController {
+@Controller('report')
+export class ReportController {
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll() {
-    return { message: 'All reports returned' };
+    return { message: 'All report returned' };
   }
 
   @Get(':id')

@@ -9,10 +9,10 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { RefundsService } from '../application/refunds/refunds.service';
+import { RefundService } from '../application/refund/refund.service';
 
-@Controller('refunds')
-export class RefundsController {
+@Controller('refund')
+export class RefundController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createRefundDto: any) {
@@ -22,7 +22,7 @@ export class RefundsController {
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll() {
-    return { message: 'All refunds returned' };
+    return { message: 'All refund returned' };
   }
 
   @Get(':id')

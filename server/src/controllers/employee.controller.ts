@@ -9,10 +9,10 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { MembersService } from '../application/members/members.service';
+import { MembersService } from '../application/member/members.service';
 
-@Controller('members')
-export class MembersController {
+@Controller('employee')
+export class EmployeeController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createMemberDto: any) {
@@ -22,7 +22,7 @@ export class MembersController {
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll() {
-    return { message: 'All members returned' };
+    return { message: 'All member returned' };
   }
 
   @Get(':id')
