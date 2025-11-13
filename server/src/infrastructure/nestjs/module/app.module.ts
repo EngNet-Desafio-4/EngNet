@@ -3,6 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from '../config/database.config';
 import { AuthModule } from './auth.module';
+import { CustomersController } from '../../../controllers/customers.controller';
+import { MembersController } from '../../../controllers/members.controller';
+import { RefundsController } from '../../../controllers/refunds.controller';
+import { ReportsController } from '../../../controllers/reports.controller';
+import { DashboardController } from '../../../controllers/dashboard.controller';
 
 @Module({
   imports: [
@@ -27,7 +32,13 @@ import { AuthModule } from './auth.module';
       }),
     }),
   ],
-  controllers: [],
+  controllers: [
+    CustomersController,
+    MembersController,
+    RefundsController,
+    ReportsController,
+    DashboardController,
+  ],
   providers: [],
 })
 export class AppModule {}
