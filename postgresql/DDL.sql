@@ -16,6 +16,12 @@ CREATE DOMAIN type_phone AS CHAR(11);
 ---------------------------------------
 -- TABLES
 ---------------------------------------
+CREATE TABLE users (
+   id SERIAL PRIMARY KEY,
+   email type_email UNIQUE,
+   password TEXT NOT NULL
+);
+
 CREATE TABLE employee
 (
     id SERIAL PRIMARY KEY,
@@ -130,6 +136,10 @@ $$ LANGUAGE plpgsql;
 ---------------------------------------
 -- TRIGGERS FOR ALL TABLES
 ---------------------------------------
+CREATE TRIGGER trg_log_users
+    AFTER INSERT OR UPDATE OR DELETE ON users
+    FOR EACH ROW EXECUTE FUNCTION fn_register_event_log();
+
 CREATE TRIGGER trg_log_employee
     AFTER INSERT OR UPDATE OR DELETE ON employee
     FOR EACH ROW EXECUTE FUNCTION fn_register_event_log();

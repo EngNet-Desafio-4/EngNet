@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('Documentação da API EngNet')
     .setVersion('1.0')
     .addBearerAuth()
+    .addServer('/api')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
