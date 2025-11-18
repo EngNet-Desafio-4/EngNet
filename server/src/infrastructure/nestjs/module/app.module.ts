@@ -4,14 +4,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from '../config/database.config';
 import { AuthModule } from './auth.module';
 import { CustomerController } from '../../../controllers/customer.controller';
-import { EmployeeController } from '../../../controllers/employee.controller';
 import { RefundController } from '../../../controllers/refund.controller';
 import { ReportController } from '../../../controllers/report.controller';
 import { DashboardController } from '../../../controllers/dashboard.controller';
+import { EmployeeModule } from './employee.module';
 
 @Module({
   imports: [
     AuthModule,
+    EmployeeModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],
@@ -34,7 +35,6 @@ import { DashboardController } from '../../../controllers/dashboard.controller';
   ],
   controllers: [
     CustomerController,
-    EmployeeController,
     RefundController,
     ReportController,
     DashboardController,

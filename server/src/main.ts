@@ -9,7 +9,15 @@ async function bootstrap() {
     .setTitle('EngNet API')
     .setDescription('Documentação da API EngNet')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'access-token',
+    )
     .addServer('/api')
     .build();
 
