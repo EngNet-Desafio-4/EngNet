@@ -18,7 +18,7 @@ CREATE DOMAIN type_phone AS CHAR(11);
 ---------------------------------------
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
-   email type_email UNIQUE,
+   email type_email UNIQUE NOT NULL,
    password TEXT NOT NULL
 );
 

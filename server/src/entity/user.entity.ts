@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class UserEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
-  @Column()
+  @Column({ unique: true, nullable: false })
   email: string;
   @Column()
   password: string;
