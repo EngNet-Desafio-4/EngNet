@@ -1,6 +1,17 @@
-import { Controller, Get, Param, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  HttpCode,
+  HttpStatus,
+  UseGuards,
+} from '@nestjs/common';
 import { ReportService } from '../application/report/report.service';
+import { JwtAuthGuard } from '../application/auth/guards/jwt.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth('engnet_auth')
 @Controller('report')
 export class ReportController {
   @Get()

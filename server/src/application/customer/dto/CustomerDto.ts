@@ -1,6 +1,7 @@
+import { CustomerStatus } from '../../../entity/enums.enum';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class EmployeeDto {
+export class CustomerDto {
   @ApiProperty()
   id?: number;
   @ApiProperty()
@@ -10,7 +11,9 @@ export class EmployeeDto {
   @ApiProperty()
   phone?: string;
   @ApiProperty()
-  photo?: string;
+  totalPurchases?: number;
   @ApiProperty()
-  birthday?: Date;
+  status?: CustomerStatus;
+  @ApiProperty()
+  createdAt?: Date;
 }

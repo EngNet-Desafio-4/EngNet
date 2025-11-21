@@ -1,6 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { DashboardService } from '../application/dashboard/dashboard.service';
+import { JwtAuthGuard } from '../application/auth/guards/jwt.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth('engnet_auth')
 @Controller('dashboard')
 export class DashboardController {
   @Get('overview')
