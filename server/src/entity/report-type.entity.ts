@@ -5,7 +5,7 @@ import { ReportEntity } from './report.entity';
 export class ReportTypeEntity {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ type: 'char', length: 50, unique: true })
+  @Column({ type: 'char', length: 30, unique: true })
   name: string;
   @OneToMany(() => ReportEntity, (report) => report.type)
   reports: ReportEntity[];

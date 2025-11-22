@@ -3,17 +3,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class RefundDto {
   @ApiProperty()
-  id?: number;
+  employee_id: number;
   @ApiProperty()
-  employeeId: number;
-  @ApiProperty()
-  categoryId?: number;
+  category_id?: number;
   @ApiProperty()
   description?: string;
   @ApiProperty()
   amount: number;
-  @ApiProperty()
-  requestDate?: Date;
   @ApiProperty()
   status?: RefundStatus;
 }

@@ -7,22 +7,28 @@ import {
 } from 'typeorm';
 import { RefundStatus } from './enums.enum';
 import { EmployeeEntity } from './employee.entity';
-import { CategoryEntity } from './category.entity';
+import { RefundCategoryEntity } from './refund-category.entity';
 
 @Entity('refund')
 export class RefundEntity {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  employee_id: number;
   @ManyToOne(() => EmployeeEntity, (employee) => employee.refunds, {
     onDelete: 'CASCADE',
+    nullable: false,
   })
   @JoinColumn({ name: 'employee_id' })
   employee: EmployeeEntity;
-  @ManyToOne(() => CategoryEntity, (category) => category.refunds, {
+  @Column({ nullable: true })
+  category_id: number | null;
+  @ManyToOne(() => RefundCategoryEntity, (category) => category.refunds, {
     onDelete: 'SET NULL',
+    nullable: true,
   })
   @JoinColumn({ name: 'category_id' })
-  category: CategoryEntity;
+  category: RefundCategoryEntity | null;
   @Column({ type: 'text', nullable: true })
   description?: string;
   @Column({ type: 'numeric', precision: 10, scale: 2 })

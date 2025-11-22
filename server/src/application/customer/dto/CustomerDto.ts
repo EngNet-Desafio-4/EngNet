@@ -3,8 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CustomerDto {
   @ApiProperty()
-  id?: number;
-  @ApiProperty()
   name: string;
   @ApiProperty()
   email: string;
@@ -14,6 +12,4 @@ export class CustomerDto {
   totalPurchases?: number;
   @ApiProperty()
   status?: CustomerStatus;
-  @ApiProperty()
-  createdAt?: Date;
 }
