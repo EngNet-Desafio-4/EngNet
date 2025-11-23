@@ -176,12 +176,6 @@ export default function ClientesPage() {
       </div>
 
       <Card className="border-gray-800 bg-black">
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle className="text-white">Lista de Clientes</CardTitle>
-            <Input placeholder="Buscar clientes..." className="w-64 bg-gray-900 border-gray-800 text-white placeholder:text-gray-500" />
-          </div>
-        </CardHeader>
         <CardContent>
           {error && <div className="text-red-400 mb-4">{error}</div>}
           
