@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter, useParams } from "next/navigation" // useParams para pegar o ID
+import { useRouter, useParams } from "next/navigation" 
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,7 +14,7 @@ import Link from "next/link"
 export default function EditarClientePage() {
   const router = useRouter()
   const params = useParams()
-  const id = params.id // Pega o ID da URL
+  const id = params.id 
 
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -23,7 +23,7 @@ export default function EditarClientePage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', status: 'Novo' })
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({})
 
-  // Buscar dados do cliente atual para preencher o form
+  
   useEffect(() => {
     async function loadOne() {
       const tryUrls = [`/api/customer/${id}`, `/customer/${id}`]
@@ -32,7 +32,7 @@ export default function EditarClientePage() {
           const res = await fetch(url, { credentials: "include" })
           if (res.ok) {
             const data = await res.json()
-            // Adaptação caso o backend retorne campos diferentes
+            
             setForm({
               name: data.name ?? data.nome ?? '',
               email: data.email ?? '',
