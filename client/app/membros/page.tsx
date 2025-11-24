@@ -16,12 +16,10 @@ export default function MembrosPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Delete states
   const [deleteId, setDeleteId] = useState<number | null>(null)
   const [deleting, setDeleting] = useState(false)
   const [deleteError, setDeleteError] = useState<string | null>(null)
 
-  // Carregar dados
   useEffect(() => {
     async function load() {
       setLoading(true)
@@ -48,7 +46,6 @@ export default function MembrosPage() {
     load()
   }, [])
 
-  // Lógica de Delete
   async function deleteMember(id: number | null) {
     if (id === null) return
     setDeleting(true)
@@ -69,7 +66,6 @@ export default function MembrosPage() {
     setDeleteError('Falha ao excluir membro.')
   }
 
-  // Métricas
   const total = membros.length
   const withPhone = membros.filter(m => m.phone).length
   const withoutPhone = total - withPhone
@@ -79,7 +75,6 @@ export default function MembrosPage() {
     catch { return false }
   }).length
 
-  // Função auxiliar para estilos das Badges de Membros
   const getBadgeStyle = (status: string) => {
     const s = (status || "").toLowerCase();
     if (s.includes("ativo")) return "bg-green-500/15 text-green-400 border-green-500/20 hover:bg-green-500/25";
@@ -101,7 +96,6 @@ export default function MembrosPage() {
         breadcrumbs={[{label:'Início', href:'/'},{label:'Membros'}]} 
       />
 
-      {/* Métricas com Ícones e Texto de Crescimento Restaurados */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
         <Card className="border-gray-800 bg-black">
           <CardHeader className="pb-2">
@@ -187,7 +181,7 @@ export default function MembrosPage() {
                     <TableCell className="text-gray-300">{m.phone ?? '-'}</TableCell>
                     <TableCell className="text-gray-300">{m.birthday ? new Date(m.birthday).toLocaleDateString() : '-'}</TableCell>
                     <TableCell>
-                      {/* Badge corrigida */}
+                      
                       <Badge className={`${getBadgeStyle(m.status || 'Ativo')} border`}>
                         {m.status || 'Ativo'}
                       </Badge>
@@ -209,7 +203,7 @@ export default function MembrosPage() {
             </Table>
           )}
 
-          {/* Modal de Exclusão */}
+          
           {deleteId !== null && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
               <div className="w-full max-w-sm bg-gray-900 border border-gray-800 p-6 rounded">
