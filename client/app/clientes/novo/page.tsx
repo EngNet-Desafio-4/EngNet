@@ -51,7 +51,6 @@ export default function NovoClientePage() {
 
         if (!res.ok) throw new Error(await res.text())
         
-        // Sucesso: Redirecionar para a lista
         router.push('/clientes')
         return
       } catch (err: any) {
