@@ -16,12 +16,10 @@ export default function ClientesPage() {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   
-  // Delete states
   const [deleteId, setDeleteId] = useState<number | null>(null)
   const [deleting, setDeleting] = useState(false)
   const [deleteError, setDeleteError] = useState<string | null>(null)
 
-  // Carregar dados
   useEffect(() => {
     async function load() {
       setLoading(true)
@@ -50,7 +48,6 @@ export default function ClientesPage() {
     load()
   }, [])
 
-  // Lógica de Delete
   async function deleteCliente(id: number) {
     setDeleting(true)
     setDeleteError(null)
@@ -70,7 +67,6 @@ export default function ClientesPage() {
     setDeleteError('Falha ao deletar.')
   }
 
-  // Cálculos de métricas
   const total = clientes.length
   const ativos = clientes.filter((c) => (c.status || '').toString().toLowerCase().includes('ativo')).length
   const vips = clientes.filter((c) => (c.status || '').toString().toLowerCase().includes('vip')).length
@@ -83,7 +79,6 @@ export default function ClientesPage() {
     } catch { return false }
   }).length
 
-  // Função auxiliar para estilos das Badges (Tags)
   const getBadgeStyle = (status: string) => {
     const s = (status || "").toLowerCase();
     if (s.includes("vip")) return "bg-purple-500/15 text-purple-400 border-purple-500/20 hover:bg-purple-500/25";
@@ -107,7 +102,6 @@ export default function ClientesPage() {
         breadcrumbs={[{ label: "Início", href: "/" }, { label: "Clientes" }]}
       />
 
-      {/* Métricas - Ícones e Textos Restaurados */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
         
         <Card className="border-gray-800 bg-black">
@@ -203,7 +197,7 @@ export default function ClientesPage() {
                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(cliente.totalPurchases ?? cliente.total ?? 0))}
                     </TableCell>
                     <TableCell>
-                      {/* Badge com cores corrigidas e hover ajustado */}
+                      
                       <Badge className={`${getBadgeStyle(cliente.status)} border`}>
                         {cliente.status}
                       </Badge>
@@ -225,7 +219,6 @@ export default function ClientesPage() {
             </Table>
           )}
 
-          {/* Modal de Confirmação de Exclusão */}
           {deleteId !== null && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
               <div className="bg-gray-900 p-6 rounded border border-gray-800 w-full max-w-sm">
