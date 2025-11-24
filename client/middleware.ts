@@ -21,11 +21,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
-        "/",
-        "/dashboard",
-        "/clientes",
-        "/membros",
-        "/reembolsos",
-        "/relatorios"
+        "/((?!auth|_next|api/auth).*)",
     ],
 };
