@@ -15,6 +15,6 @@ export class EmployeeEntity {
   photo?: Buffer;
   @Column({ type: 'date', nullable: true })
   birthday?: Date;
-  @OneToMany(() => RefundEntity, (refund) => refund.employee)
+  @OneToMany(() => RefundEntity, (refund) => refund.employee_id)
   refunds: RefundEntity[];
 }

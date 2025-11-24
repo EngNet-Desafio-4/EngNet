@@ -32,7 +32,7 @@ CREATE TABLE employee
     birthday DATE
 );
 
-CREATE TABLE category
+CREATE TABLE refund_category
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE
@@ -53,7 +53,7 @@ CREATE TABLE refund
 (
     id SERIAL PRIMARY KEY,
     employee_id INT NOT NULL REFERENCES employee(id) ON DELETE CASCADE,
-    category_id INT REFERENCES category(id) ON DELETE SET NULL,
+    category_id INT REFERENCES refund_category(id) ON DELETE SET NULL,
     description TEXT,
     amount NUMERIC(10, 2) CHECK (amount > 0),
     request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -63,7 +63,7 @@ CREATE TABLE refund
 CREATE TABLE report_type
 (
     id SERIAL PRIMARY KEY,
-    name CHAR(50) NOT NULL UNIQUE
+    name CHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE report
@@ -145,7 +145,7 @@ CREATE TRIGGER trg_log_employee
     FOR EACH ROW EXECUTE FUNCTION fn_register_event_log();
 
 CREATE TRIGGER trg_log_category
-    AFTER INSERT OR UPDATE OR DELETE ON category
+    AFTER INSERT OR UPDATE OR DELETE ON refund_category
     FOR EACH ROW EXECUTE FUNCTION fn_register_event_log();
 
 CREATE TRIGGER trg_log_customer

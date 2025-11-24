@@ -3,16 +3,20 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from '../config/database.config';
 import { AuthModule } from './auth.module';
-import { CustomerController } from '../../../controllers/customer.controller';
-import { RefundController } from '../../../controllers/refund.controller';
-import { ReportController } from '../../../controllers/report.controller';
-import { DashboardController } from '../../../controllers/dashboard.controller';
 import { EmployeeModule } from './employee.module';
+import { RefundModule } from './refund.module';
+import { CustomerModule } from './customer.module';
+import { DashboardModule } from './dashboard.module';
+import { ReportModule } from './report.module';
 
 @Module({
   imports: [
     AuthModule,
     EmployeeModule,
+    RefundModule,
+    CustomerModule,
+    DashboardModule,
+    ReportModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],
@@ -32,12 +36,6 @@ import { EmployeeModule } from './employee.module';
         synchronize: true,
       }),
     }),
-  ],
-  controllers: [
-    CustomerController,
-    RefundController,
-    ReportController,
-    DashboardController,
   ],
   providers: [],
 })

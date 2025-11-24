@@ -1,20 +1,31 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { DashboardService } from '../application/dashboard/dashboard.service';
+import { JwtAuthGuard } from '../application/auth/guards/jwt.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth('engnet_auth')
 @Controller('dashboard')
 export class DashboardController {
+  constructor(private readonly dashboardService: DashboardService) {}
+
   @Get('overview')
-  getOverview() {
-    return { totola: 10000 };
+  async getOverview() {
+    return await this.dashboardService.getOverviewStats();
   }
 
   @Get('refunds')
-  getRefundsStats() {
-    return { totola: 10000 };
+  async getRefundsStats() {
+    return await this.dashboardService.getPendingRefunds();
+  }
+
+  @Get('members')
+  async getActiveMembers() {
+    return await this.dashboardService.getActiveMembers();
   }
 
   @Get('contracts')
-  getContractsStats() {
-    return { totola: 10000 };
+  async getContractsStats() {
+    return await this.dashboardService.getClosedContracts();
   }
 }

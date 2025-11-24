@@ -16,7 +16,7 @@ import { JwtAuthGuard } from '../application/auth/guards/jwt.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(JwtAuthGuard)
-@ApiBearerAuth('access-token')
+@ApiBearerAuth('engnet_auth')
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
