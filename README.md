@@ -2,6 +2,9 @@
 
 Documentação rápida para *buildar*, executar e desenvolver localmente a **EngNet** usando Docker.
 
+> Como rodar:
+[https://youtu.be/PyCc4fMb8hc](https://youtu.be/PyCc4fMb8hc)
+
 ---
 
 ## Pré-requisitos
