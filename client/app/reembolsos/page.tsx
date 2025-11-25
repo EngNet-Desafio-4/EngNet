@@ -63,7 +63,6 @@ export default function ReembolsosPage() {
           const catData = await catRes.json()
           setCategories(Array.isArray(catData) ? catData : catData.data ?? [])
         } else {
-          // Fallback local de categorias (mesma lista usada no formulário)
           setCategories([
             { id: 1, name: "Combustível" }, { id: 2, name: "Alimentação" },
             { id: 3, name: "Transporte" }, { id: 4, name: "Hospedagem" },
