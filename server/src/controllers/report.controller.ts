@@ -14,15 +14,17 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 @ApiBearerAuth('engnet_auth')
 @Controller('report')
 export class ReportController {
+  constructor(private readonly reportService: ReportService) {}
+
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll() {
-    return { message: 'All report returned' };
+    return this.reportService.getAll();
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string) {
-    return { message: `Report ${id} returned` };
+    return this.reportService.getByID(Number(id));
   }
 }

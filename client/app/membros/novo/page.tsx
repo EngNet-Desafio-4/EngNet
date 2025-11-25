@@ -46,7 +46,6 @@ export default function NovoMembroPage() {
         })
         if (!res.ok) throw new Error(String(res.status))
         
-        // Sucesso -> Redireciona
         router.push('/membros')
         return
       } catch (err: any) { lastErr = err }
