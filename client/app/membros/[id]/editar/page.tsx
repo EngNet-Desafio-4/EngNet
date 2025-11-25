@@ -22,7 +22,6 @@ export default function EditarMembroPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', birthday: '' })
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string }>({})
 
-  // Carregar dados iniciais
   useEffect(() => {
     async function loadOne() {
       const tryUrls = [`/api/employee/${id}`, `/employee/${id}`]
